@@ -144,26 +144,14 @@ brew install instacart-order-history</code></pre>
 
     <section>
         <h2>What are some instacart-order-history example commands?</h2>
-        <pre><code># Export all orders as JSON (default)
+        <pre><code># Export all orders as JSON
 instacart-order-history --isid "abc123..."
 
-# Export last 6 months to CSV file
-instacart-order-history --isid "abc123..." --months 6 -f csv -o groceries.csv
+# Export last 6 months to CSV
+instacart-order-history --isid "abc123..." --months 6 -f csv
 
-# Export last 30 days as JSON
-instacart-order-history --isid "abc123..." --days 30
-
-# Export orders since a specific date
-instacart-order-history --isid "abc123..." --since 2025-01-01
-
-# Export as human-readable text
-instacart-order-history --isid "abc123..." -f text
-
-# Export quietly (no progress) and pipe to jq
-instacart-order-history --isid "abc123..." -q | jq '.[0]'
-
-# Save all orders to file
-instacart-order-history --isid "abc123..." -o all-orders.json</code></pre>
+# Export to file
+instacart-order-history --isid "abc123..." -o orders.json</code></pre>
     </section>
 
     <div class="footer">
