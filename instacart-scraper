@@ -206,8 +206,8 @@ To get your session cookie:
   3. Copy value of '_instacart_session_id'
 ''')
 
-    parser.add_argument('--session', '-s', required=True,
-                        help='Instacart session cookie value')
+    parser.add_argument('--instacart-session-id', '--isid', required=True,
+                        help='Your _instacart_session_id cookie value')
 
     date_group = parser.add_mutually_exclusive_group()
     date_group.add_argument('--since', type=str, help='Start date (YYYY-MM-DD)')
@@ -233,7 +233,7 @@ To get your session cookie:
     elif args.days:
         since = datetime.now() - timedelta(days=args.days)
 
-    orders = fetch_orders(args.session, since=since, verbose=not args.quiet)
+    orders = fetch_orders(args.instacart_session_id, since=since, verbose=not args.quiet)
 
     if not orders:
         print('No orders found.', file=sys.stderr)

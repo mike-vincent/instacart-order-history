@@ -1,6 +1,6 @@
 # instacart-scraper
 
-A command-line tool for scraping your Instacart order history.
+Instacart Scraper is a command-line tool for exporting your Instacart order history.
 
 ## Install
 
@@ -18,20 +18,21 @@ brew install instacart-scraper
 ## Usage
 
 ```bash
-instacart-scraper --session "YOUR_SESSION_COOKIE"
-instacart-scraper --session "COOKIE" --months 6 -f csv -o orders.csv
+instacart-scraper --isid "YOUR_SESSION_ID"
+instacart-scraper --isid "YOUR_SESSION_ID" --months 6 -f csv -o orders.csv
 ```
 
 ## Options
 
 ```
--s, --session    Instacart session cookie from browser (required)
+--isid, --instacart-session-id     Your _instacart_session_id cookie (required)
 --months N       Last N months
 --days N         Last N days
 --since DATE     Since YYYY-MM-DD
 -f, --format     json, csv, or text
 -o, --output     Output file
 -q, --quiet      Quiet mode
+-h, --help       Show help
 ```
 
 ## Output

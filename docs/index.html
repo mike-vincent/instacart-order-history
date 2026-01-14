@@ -137,7 +137,7 @@ brew install instacart-scraper</code></pre>
     <section>
         <h2>How do I use instacart-scraper?</h2>
         <p>You use instacart-scraper by running it with your session cookie:</p>
-        <pre><code>instacart-scraper -s "YOUR_COOKIE"</code></pre>
+        <pre><code>instacart-scraper --isid "YOUR_SESSION_ID"</code></pre>
     </section>
 
     <hr>
@@ -145,22 +145,22 @@ brew install instacart-scraper</code></pre>
     <section>
         <h2>Examples</h2>
         <pre><code># Export all orders as JSON
-instacart-scraper --session "COOKIE"
+instacart-scraper --isid "YOUR_SESSION_ID"
 
 # Last 6 months as CSV
-instacart-scraper --session "COOKIE" --months 6 -f csv
+instacart-scraper --isid "YOUR_SESSION_ID" --months 6 -f csv
 
 # Last 30 days to a file
-instacart-scraper --session "COOKIE" --days 30 -o orders.json
+instacart-scraper --isid "YOUR_SESSION_ID" --days 30 -o orders.json
 
 # Since January 2024
-instacart-scraper --session "COOKIE" --since 2024-01-01
+instacart-scraper --isid "YOUR_SESSION_ID" --since 2024-01-01
 
 # Human-readable text output
-instacart-scraper --session "COOKIE" -f text
+instacart-scraper --isid "YOUR_SESSION_ID" -f text
 
 # Quiet mode (no progress output)
-instacart-scraper --session "COOKIE" -q > orders.json</code></pre>
+instacart-scraper --isid "YOUR_SESSION_ID" -q > orders.json</code></pre>
     </section>
 
     <div class="footer">

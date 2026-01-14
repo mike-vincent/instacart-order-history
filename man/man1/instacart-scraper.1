@@ -1,0 +1,109 @@
+.TH INSTACART-SCRAPER 1 "January 2026" "1.0.0" "User Commands"
+.SH NAME
+instacart-scraper \- export Instacart order history
+.SH SYNOPSIS
+.B instacart-scraper
+.RB \-\-isid
+.IR SESSION_ID
+.RI [ OPTIONS ]
+.SH DESCRIPTION
+.B instacart-scraper
+exports your Instacart order history with full item details to JSON, CSV, or
+plain text. The tool uses only Python standard library with no external
+dependencies.
+.PP
+Progress is displayed to stderr as pages are fetched. Use \fB\-q\fR for quiet mode.
+.SH OPTIONS
+.TP
+.BR \-\-isid ", " \-\-instacart\-session\-id " " \fISESSION_ID\fR
+Your _instacart_session_id cookie value (required). Get this from your browser's
+DevTools under Application > Cookies > _instacart_session_id.
+.TP
+.BR \-\-since " " \fIDATE\fR
+Export orders since DATE (YYYY-MM-DD format).
+.TP
+.BR \-\-months " " \fIN\fR
+Export orders from the last N months.
+.TP
+.BR \-\-days " " \fIN\fR
+Export orders from the last N days.
+.TP
+.BR \-f ", " \-\-format " " \fIFORMAT\fR
+Output format: json (default), csv, or text.
+.TP
+.BR \-o ", " \-\-output " " \fIFILE\fR
+Write output to FILE instead of stdout.
+.TP
+.BR \-q ", " \-\-quiet
+Suppress progress output.
+.TP
+.BR \-h ", " \-\-help
+Show help message and exit.
+.SH EXAMPLES
+Export all orders to JSON:
+.PP
+.RS
+instacart-scraper \-\-isid "YOUR_SESSION_ID"
+.RE
+.PP
+Export last 6 months to CSV:
+.PP
+.RS
+instacart-scraper \-\-isid "YOUR_SESSION_ID" \-\-months 6 \-f csv
+.RE
+.PP
+Export to file quietly:
+.PP
+.RS
+instacart-scraper \-\-isid "YOUR_SESSION_ID" \-o orders.json \-q
+.RE
+.PP
+Export since specific date:
+.PP
+.RS
+instacart-scraper \-\-isid "YOUR_SESSION_ID" \-\-since 2024-01-01
+.RE
+.SH OUTPUT FORMATS
+.TP
+.B json
+Array of order objects with nested deliveries and items. Default format.
+.TP
+.B csv
+Flat CSV with columns: order_id, order_date, order_total, retailer, item_name,
+quantity, size, product_id.
+.TP
+.B text
+Human-readable summary with totals and itemized orders.
+.SH AUTHENTICATION
+.B instacart-scraper
+requires your Instacart session cookie for authentication.
+.PP
+To get the session ID:
+.IP 1. 4
+Log into instacart.com in your browser
+.IP 2. 4
+Open DevTools (Cmd+Option+I on macOS, F12 on Windows/Linux)
+.IP 3. 4
+Go to Application > Cookies > www.instacart.com
+.IP 4. 4
+Copy the value of _instacart_session_id
+.PP
+Session cookies expire. Get a fresh cookie if you see authentication errors.
+.SH EXIT STATUS
+.TP
+.B 0
+Success
+.TP
+.B 1
+Error (invalid session, no orders found, network error)
+.SH AUTHOR
+Mike Vincent, Los Angeles
+.br
+https://www.mikevincent.dev
+.SH SEE ALSO
+.BR curl (1),
+.BR jq (1)
+.SH COPYRIGHT
+Copyright \(co 2026 Mike Vincent. All rights reserved.
+.br
+MIT License.

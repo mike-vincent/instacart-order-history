@@ -22,29 +22,29 @@ Get the session cookie from your browser. Log into instacart.com, open DevTools,
 Run instacart-scraper with your session cookie:
 
 ```
-instacart-scraper -s "YOUR_COOKIE"
+instacart-scraper --isid "YOUR_SESSION_ID"
 ```
 
 ## Examples
 
 ```
 # Export all orders as JSON
-instacart-scraper --session "COOKIE"
+instacart-scraper --isid "YOUR_SESSION_ID"
 
 # Last 6 months as CSV
-instacart-scraper --session "COOKIE" --months 6 -f csv
+instacart-scraper --isid "YOUR_SESSION_ID" --months 6 -f csv
 
 # Last 30 days to a file
-instacart-scraper --session "COOKIE" --days 30 -o orders.json
+instacart-scraper --isid "YOUR_SESSION_ID" --days 30 -o orders.json
 
 # Since January 2024
-instacart-scraper --session "COOKIE" --since 2024-01-01
+instacart-scraper --isid "YOUR_SESSION_ID" --since 2024-01-01
 
 # Human-readable text output
-instacart-scraper --session "COOKIE" -f text
+instacart-scraper --isid "YOUR_SESSION_ID" -f text
 
 # Quiet mode (no progress output)
-instacart-scraper --session "COOKIE" -q > orders.json
+instacart-scraper --isid "YOUR_SESSION_ID" -q > orders.json
 ```
 
 ## Author

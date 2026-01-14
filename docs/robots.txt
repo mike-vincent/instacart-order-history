@@ -13,4 +13,4 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-Sitemap: https://mike-vincent.github.io/instacart-orders/llms.txt
+Sitemap: https://mike-vincent.github.io/instacart-scraper/llms.txt
