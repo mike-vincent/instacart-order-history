@@ -113,7 +113,8 @@
 
     <section>
         <h2>What does instacart-order-history-fetch do?</h2>
-        <p>instacart-order-history-fetch gets your Instacart order history to JSON, CSV, or text. instacart-order-history-fetch outputs order dates, totals, retailers, and full item details.</p>
+        <p>instacart-order-history-fetch gets your Instacart order history and saves it as JSON, CSV, or text.</p>
+        <p>Output includes order dates, totals, retailers, and full item details.</p>
     </section>
 
     <hr>
@@ -129,7 +130,8 @@ brew install instacart-order-history-fetch</code></pre>
 
     <section>
         <h2>How do I use instacart-order-history-fetch?</h2>
-        <p>You use instacart-order-history-fetch by running it with your session cookie. Log into instacart.com, open your browser DevTools, go to Application → Cookies, and copy the value of <code>_instacart_session_id</code>. It looks like this:</p>
+        <p>You use instacart-order-history-fetch by running it with your session cookie.</p>
+        <p>Log into instacart.com, open your browser DevTools, go to Application → Cookies, and copy the value of <code>_instacart_session_id</code>. It looks like this:</p>
         <pre><code>WlhsS05XTXpTVzFrVjFaNlRETkNkR0ZKUW5OaFYwNXNZM2xCYVZwWVNq...</code></pre>
         <p>Then run:</p>
         <pre><code>instacart-order-history-fetch --instacart-session-id "WlhsS05XTXpTVzFr..."</code></pre>
