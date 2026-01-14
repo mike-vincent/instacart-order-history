@@ -133,8 +133,8 @@ brew install instacart-order-history-fetch</code></pre>
         <p>You use instacart-order-history-fetch by running it with your session cookie.</p>
         <p>Log into instacart.com, open your browser DevTools, go to Application → Cookies, and copy the value of <code>_instacart_session_id</code>. It looks like this:</p>
         <pre><code>WlhsS05XTXpTVzFrVjFaNlRETkNkR0ZKUW5OaFYwNXNZM2xCYVZwWVNq...</code></pre>
-        <p>Then run:</p>
-        <pre><code>instacart-order-history-fetch --instacart-session-id "WlhsS05XTXpTVzFr..."</code></pre>
+        <pre><code>instacart-order-history-fetch \
+  --instacart-session-id "WlhsS05XTXpTVzFr..."</code></pre>
     </section>
 
     <hr>
@@ -152,7 +152,7 @@ instacart-order-history-fetch --instacart-session-id "abc123..." -o orders.json<
     </section>
 
     <div class="footer">
-        Copyright © 2026 <a href="https://www.mikevincent.dev">Mike Vincent</a>, Los Angeles, California. All Rights Reserved.
+        Copyright © 2026 <a href="https://www.mikevincent.dev">Mike Vincent</a>, Los Angeles, Calif. All Rights Reserved.
     </div>
 </body>
 </html>
