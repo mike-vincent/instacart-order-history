@@ -171,28 +171,51 @@ def output_csv(orders, file=sys.stdout):
                 ])
 
 
-def output_text(orders, file=sys.stdout):
-    total_spent = sum(o['total'] or 0 for o in orders)
-    total_items = sum(len(d['items']) for o in orders for d in o['deliveries'])
-
-    file.write('INSTACART ORDER HISTORY\n')
-    file.write('=======================\n')
-    file.write(f'Orders: {len(orders)}\n')
-    file.write(f'Items: {total_items}\n')
-    file.write(f'Total spent: ${total_spent:,.2f}\n\n')
-
+def output_tsv(orders, file=sys.stdout):
+    file.write('order_id\torder_date\torder_total\tretailer\titem_name\tquantity\tsize\tproduct_id\n')
     for order in orders:
-        file.write(f'--- {order["created_at"]} ---\n')
-        file.write(f'Order: {order["id"]}\n')
-        file.write(f'Total: {order["total_display"]}\n')
-
         for delivery in order['deliveries']:
-            file.write(f'  From: {delivery["retailer"]}\n')
             for item in delivery['items']:
-                qty = item['quantity'] or 1
-                size = f' ({item["size"]})' if item.get('size') else ''
-                file.write(f'    - {item["name"]}{size} x{qty}\n')
-        file.write('\n')
+                row = [
+                    str(order['id'] or ''),
+                    str(order['created_at'] or ''),
+                    str(order['total'] or ''),
+                    str(delivery['retailer'] or ''),
+                    str(item['name'] or ''),
+                    str(item['quantity'] or ''),
+                    str(item['size'] or ''),
+                    str(item['product_id'] or ''),
+                ]
+                file.write('\t'.join(row) + '\n')
+
+
+def output_markdown(orders, file=sys.stdout):
+    file.write('| order_id | order_date | order_total | retailer | item_name | quantity | size | product_id |\n')
+    file.write('|----------|------------|-------------|----------|-----------|----------|------|------------|\n')
+    for order in orders:
+        for delivery in order['deliveries']:
+            for item in delivery['items']:
+                file.write(f"| {order['id']} | {order['created_at']} | {order['total']} | {delivery['retailer']} | {item['name']} | {item['quantity']} | {item['size'] or ''} | {item['product_id']} |\n")
+
+
+def output_yaml(orders, file=sys.stdout):
+    for order in orders:
+        file.write(f"- id: {order['id']}\n")
+        file.write(f"  status: {order['status']}\n")
+        file.write(f"  total: {order['total']}\n")
+        file.write(f"  created_at: \"{order['created_at']}\"\n")
+        file.write(f"  deliveries:\n")
+        for delivery in order['deliveries']:
+            file.write(f"    - retailer: \"{delivery['retailer']}\"\n")
+            file.write(f"      delivered_at: \"{delivery['delivered_at']}\"\n")
+            file.write(f"      items:\n")
+            for item in delivery['items']:
+                name = str(item['name'] or '').replace('"', '\\"')
+                size = str(item['size'] or '').replace('"', '\\"')
+                file.write(f"        - name: \"{name}\"\n")
+                file.write(f"          quantity: {item['quantity']}\n")
+                file.write(f"          size: \"{size}\"\n")
+                file.write(f"          product_id: {item['product_id']}\n")
 
 
 def main():
@@ -214,7 +237,7 @@ To get your session cookie:
     date_group.add_argument('--months', type=int, help='Last N months')
     date_group.add_argument('--days', type=int, help='Last N days')
 
-    parser.add_argument('--format', '-f', choices=['json', 'csv', 'text'],
+    parser.add_argument('--format', '-f', choices=['csv', 'json', 'markdown', 'tsv', 'yaml'],
                         default='json', help='Output format (default: json)')
     parser.add_argument('--output', '-o', type=str, help='Output file')
     parser.add_argument('--quiet', '-q', action='store_true', help='Quiet mode')
@@ -246,8 +269,12 @@ To get your session cookie:
             output_json(orders, output_file)
         elif args.format == 'csv':
             output_csv(orders, output_file)
-        elif args.format == 'text':
-            output_text(orders, output_file)
+        elif args.format == 'tsv':
+            output_tsv(orders, output_file)
+        elif args.format == 'markdown':
+            output_markdown(orders, output_file)
+        elif args.format == 'yaml':
+            output_yaml(orders, output_file)
     finally:
         if args.output:
             output_file.close()

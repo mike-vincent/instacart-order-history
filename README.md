@@ -29,7 +29,7 @@ instacart-order-history --isid "YOUR_SESSION_ID" --months 6 -f csv -o orders.csv
 --months N       Last N months
 --days N         Last N days
 --since DATE     Since YYYY-MM-DD
--f, --format     json, csv, or text
+-f, --format     csv, json, markdown, tsv, or yaml
 -o, --output     Output file
 -q, --quiet      Quiet mode
 -h, --help       Show help
