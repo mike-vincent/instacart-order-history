@@ -45,7 +45,7 @@ JSON, CSV, or text with order dates, totals, retailers, and full item details.
 
 ## Disclaimer
 
-This tool is not affiliated with, endorsed by, or connected to Instacart. Use of this tool may violate Instacart's Terms of Service. You use this tool at your own risk to access your own purchase data.
+Not affiliated with Instacart. Instacart's Terms of Service prohibit scraping and automated access. Use at your own risk.
 
 ## License
 
