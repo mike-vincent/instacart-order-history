@@ -45,7 +45,7 @@ JSON, CSV, or text with order dates, totals, retailers, and full item details.
 
 ## Disclaimer
 
-Not affiliated with Instacart. Instacart's Terms of Service prohibit scraping and automated access. Use at your own risk.
+Not affiliated with Instacart. Your receipts are your data.
 
 ## License
 
