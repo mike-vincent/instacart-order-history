@@ -45,7 +45,7 @@ JSON, CSV, or text with order dates, totals, retailers, and full item details.
 
 ## Disclaimer
 
-Not affiliated with Instacart.
+Not affiliated with Maplebear Inc. d/b/a Instacart.
 
 ## License
 
